@@ -1,5 +1,16 @@
-import { SecretandHMAC } from "./HMAC.js"
-// test
-let a= new SecretandHMAC('BD9BE48334BB9C5EC263953DA54727F707E95544739FCE7359C267E734E380A2','1')
-console.log(a.getHMAC())
-
+import { checkDices } from "./intransitive-dices.js"
+import { intransitiveDice,generateDices,showObject,SelectFromBatch } from "./Dice.js"
+try{
+    let firstFlag=checkDices(process.argv.slice(2))
+    console.log(firstFlag)
+    if(firstFlag?.status==true){
+        let arrayDices=generateDices(firstFlag.batch)
+        const selectedDice=SelectFromBatch(1,arrayDices)
+        console.log('selectedDice', selectedDice);
+    }
+}
+catch(e)
+{
+    console.error(error)
+    process.exit(1);
+}
