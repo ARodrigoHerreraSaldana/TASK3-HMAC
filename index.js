@@ -4,10 +4,12 @@ import { rl, close, question, questionLoop } from "./question.js";
 import { SecretandHMAC } from "./HMAC.js";
 import { Process } from "./playProces.js";
 import { assignDices } from "./assignDices.js";
+import { firstTable } from "./table.js";
 try {
     //check if the Dices are suitable for the task
     let firstFlag = checkDices(process.argv.slice(2));
     //If it is okay proceed
+    console.log(`\n   Probability of the win fоr the user:\n${firstTable}`)
     if (firstFlag?.status == true) {
         let batch = new intransitiveDiceTable();
         batch.generateDices(firstFlag.batch);

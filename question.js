@@ -1,4 +1,5 @@
 import readline from "readline";
+import { firstTable } from "./table.js";
 export const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -25,10 +26,23 @@ export const question = (question) => {
 export const questionLoop = async function(flag, questiontext,type)
 {
       let response= ''
+      let response2=''
+      let flag2=false
       while (!flag) {
           response = await question(questiontext);
           flag = wrongInput(response,type);
+          if(response=='?')
+            {
+            console.log(firstTable)  
+          while(!flag2)
+            {
+                response2 = await question("press x or X to exit\n");
+                flag2 = wrongInput(response2,3);
+            }
         }
+        }
+
+
         //close if user press x or X
         close(response);
         return response
@@ -39,8 +53,12 @@ export const wrongInput = function (getData, type) {
     let regex;
     if (type == 1) {
       regex = /[01xX?]+/g;
-    } else {
+    } else if (type == 2){
       regex = /[0-5xX?]+/g;
+    }
+    else
+    {
+     regex = /[xX]+/g;  
     }
   
     if (!regex.test(getData)) {
