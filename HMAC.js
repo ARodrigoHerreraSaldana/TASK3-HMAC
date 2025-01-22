@@ -1,9 +1,10 @@
-import { createHmac,randomBytes } from "crypto";
+import { createHmac,randomBytes,randomInt } from "crypto";
 
 export class SecretandHMAC{
-    constructor(message){
+    constructor(min,max){
+        this.randomNumber=randomInt(min,max).toString()
         this.secret=randomBytes(32).toString('hex')
-        this.HMAC=createHmac('sha3-256', this.secret).update(message).digest('hex')
+        this.HMAC=createHmac('sha3-256', this.secret).update(this.randomNumber).digest('hex')
     }
     getHMAC()
     {
@@ -17,6 +18,6 @@ export class SecretandHMAC{
 }
 
 // test
-let a= new SecretandHMAC('1')
-console.log(a.getHMAC())
-console.log(a.getSecret())
+// let a= new SecretandHMAC('1')
+// console.log(a.getHMAC())
+// console.log(a.getSecret())

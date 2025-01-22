@@ -25,11 +25,13 @@ export class intransitiveDiceTable {
     console.log(this.table);
     return this.table;
   }
+  
   selectAndUpdateBatch(id,player) {
     const selected=this.table.find((element) => element.id == id);
     selected.selectedBy=player
     return selected
   }
+
   //method that makes the computer select randomly a dice
   SelectRandomlyFromBatch() {
     let ids=this.table.filter((element)=>element.selectedBy==0).map((element)=>element.id)
@@ -39,6 +41,19 @@ export class intransitiveDiceTable {
     element.selectedBy='computer'
     return element
 }
+showAvailableDices()
+{
+    let available=this.table.filter((element)=>element.selectedBy==0).map((element,index)=>{
+        return {index,'id':element.id,'sides':element.sides}
+    })
+    let str=''
+    for(let i=0; i<available.length; i++)
+    {
+        str+=available[i].index+' - '+available[i].sides+'\n' 
+    }
+    return [available, str]
+}
+
 }
 // try {
 //   let batch = new intransitiveDiceTable();
