@@ -19,7 +19,6 @@ const selectFromBatch = async function (text) {
 };
 
 const alertPlayerDice = function (test) {
-    console.log("test", test);
     let stringDices = JSON.stringify(test.sides);
     let newStr = stringDices.replace(/"/g, " ").trim();
     console.log(`you selected the [${newStr}] dice`);

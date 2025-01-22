@@ -13,6 +13,7 @@ export function checkDices(args) {
         
       );
       TestComplete.status = false
+      process.exit(1);
     } else {
         TestComplete.status = true;
     }

@@ -22,7 +22,7 @@ Try to guess my selection.`);
         let secondFlag = false;
         let questionSecondFlag = `0 - 0\n1 - 1\nX - exit\n? - help\n`;
         let response = "";
-        response = await questionLoop(secondFlag, questionSecondFlag);
+        response = await questionLoop(secondFlag, questionSecondFlag,1);
         console.log(
             `Your selection: ${response}\nMy selection: ${whogoesFirst.randomNumber
             } (KEY=${whogoesFirst.getSecret()})`
