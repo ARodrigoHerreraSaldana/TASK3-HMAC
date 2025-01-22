@@ -32,7 +32,6 @@ const returnsThrow = async function (selectedDice, whoisthrowing) {
   let resultMod = (Number(response) + Number(Secret.randomNumber)) % 6;
   console.log(`The result is ${response} + ${Secret.randomNumber} = ${resultMod} (mod 6)`);
   let array = selectedDice.split(",").map(Number);
-  //if whoisthrowing is 1 the player is throwing
   const message = whoisthrowing == 'playerSelectedDice' ? `${menu1.text1} ${array[resultMod]}` : `${menu1.text2} ${array[resultMod]}`;
   console.log(message)
   return array[resultMod];

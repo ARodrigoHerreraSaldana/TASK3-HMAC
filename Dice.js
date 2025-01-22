@@ -25,7 +25,7 @@ export class intransitiveDiceTable {
     console.log(this.table);
     return this.table;
   }
-  
+
   selectAndUpdateBatch(id,player) {
     const selected=this.table.find((element) => element.id == id);
     selected.selectedBy=player
@@ -53,7 +53,13 @@ showAvailableDices()
     }
     return [available, str]
 }
-
+selectPlayerDice(response)
+{
+    const [available,str]=this.showAvailableDices()
+    let element = available.find((element) => element.index == response);
+    let playerSelectedDice = this.selectAndUpdateBatch(element.id, "player");
+    return playerSelectedDice
+}
 }
 // try {
 //   let batch = new intransitiveDiceTable();
