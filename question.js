@@ -21,13 +21,13 @@ export const question = (question) => {
     });
   };
 
-//get inside questionLoop
+//get inside questionLoop until you put an acceptable value
 export const questionLoop = async function(flag, questiontext,type)
 {
       let response= ''
       while (!flag) {
           response = await question(questiontext);
-          flag = wrongInput(response);
+          flag = wrongInput(response,type);
         }
         //close if user press x or X
         close(response);

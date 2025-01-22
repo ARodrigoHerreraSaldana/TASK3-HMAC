@@ -1,27 +1,23 @@
 import { SecretandHMAC } from "./HMAC.js";
 import { rl, close, question, questionLoop } from "./question.js";
 
-export const Process = async function (
-  rl,
-  PlayerselectedDice,
-  ComputerselectedDice,
-  whogoesFirst
-) {
+export const Process = async function (PlayerselectedDice,ComputerselectedDice,whogoesFirst) {
   if (whogoesFirst == 1) {
-    let playerDice = await SupProcess(PlayerselectedDice, 1);
+    let playerDice = await returnsThrow(PlayerselectedDice, 1);
     console.log(`It's the computer turn`);
-    let computerDice = await SupProcess(ComputerselectedDice, 2);
+    let computerDice = await returnsThrow(ComputerselectedDice, 2);
     asignScore(playerDice, computerDice);
   }
   if (whogoesFirst == 2) {
-    let computerDice2 = await SupProcess(ComputerselectedDice, 2);
-    console.log(`It's the computer turn`);
-    let playerDice2 = await SupProcess(PlayerselectedDice, 1);
+    let computerDice2 = await returnsThrow(ComputerselectedDice, 2);
+    console.log(`It's the player turn`);
+    let playerDice2 = await returnsThrow(PlayerselectedDice, 1);
     asignScore(playerDice2, computerDice2);
   }
 };
 
-const SupProcess = async function (selectedDice, whoisthrowing) {
+//Returns Throw
+const returnsThrow = async function (selectedDice, whoisthrowing) {
   const menu1 = {
     text1: "Your throw is",
   };
@@ -46,7 +42,7 @@ const SupProcess = async function (selectedDice, whoisthrowing) {
     `The result is ${response} + ${Secret.randomNumber} = ${resultMod} (mod 6)`
   );
   let array = selectedDice.sides.split(",").map(Number);
-  console.log("selectedDice", array);
+
   if (whoisthrowing == 1) console.log(`${menu1.text1} ${array[resultMod]}`);
   else if (whoisthrowing == 2) {
     console.log(`${menu2.text1} ${array[resultMod]}`);
@@ -54,7 +50,8 @@ const SupProcess = async function (selectedDice, whoisthrowing) {
   return array[resultMod];
 };
 
-const asignScore = function (player, Computer) {
+//function that tells me who won
+const asignScore = function (playerDice, computerDice) {
   if (playerDice > computerDice) {
     console.log("The player wins");
   } else if (playerDice === computerDice) {

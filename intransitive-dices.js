@@ -10,6 +10,7 @@ export function checkDices(args) {
     if (!regex.test(element)) {
       console.error(
         "Parameters at least be a pair of dices like 1,2,3,4,5,6 2,2,2,2,2,2,2. Remember: their sides should be greater than 0"
+        
       );
       TestComplete.status = false
     } else {
