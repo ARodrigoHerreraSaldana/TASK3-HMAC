@@ -63,13 +63,18 @@ export const questionLoopForDices = async function (flag, obj, table) {
   let closeQuestion = ["x", "x", "?"];
   let goodAnswers = [...obj[2], ...closeQuestion];
   let dynamicTable = generateDynamicTable(table);
-  let response = "";
+  let response = ''
+  let flag2=false
+  let response2=''
   while (!flag) {
     response = await question(
       `Choose your dice:\n${obj[1]}? - question\nX - close\n`
     );
-    console.log('wrong input')
-    flag = goodAnswers.includes(response);
+    if (goodAnswers.includes(response)) {
+      flag = true;
+    } else {
+      console.log('wrong input');
+    }
     if (response == "?") {
       console.log(dynamicTable);
       while (!flag2) {
