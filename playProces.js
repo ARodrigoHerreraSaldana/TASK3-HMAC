@@ -13,12 +13,12 @@ export const Process = async function (obj, batch) {
 
 const menu1 = {
     text1: "Your throw is",
-    text2: "The computer throw is",
+    text2: "My throw is",
   };
 
 const menu2 ={
     passThrow1:"It's time for your throw",
-    passThrow2:"It's time for the computer to throw"
+    passThrow2:"It's time for me to throw"
 }
 //Returns Throw
 const returnsThrow = async function (selectedDice, whoisthrowing,batch) {

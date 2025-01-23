@@ -40,7 +40,7 @@ const PlayerGoesFirst = async function (orderPlayers, batch) {
         orderPlayers.push({ playerSelectedDice: playerSelectedDice });
         let computerSelectedDice = batch.SelectRandomlyFromBatch();
         orderPlayers.push({ computerSelectedDice: computerSelectedDice });
-        console.log(`the computer selected [${computerSelectedDice.sides}]\nIt's time to play`);
+        console.log(`I selected [${computerSelectedDice.sides}]\nIt's time to play`);
         let t1 = await Process(orderPlayers,batch);
     }
 };
@@ -49,7 +49,7 @@ const ComputerGoesFirst = async function (orderPlayers, batch) {
     console.log("You didn't guessed it correctly.The computer go first");
     let computerSelectedDice = batch.SelectRandomlyFromBatch();
     orderPlayers.push({ computerSelectedDice: computerSelectedDice });
-    console.log(`the computer selected [${computerSelectedDice.sides}]`);
+    console.log(`I selected [${computerSelectedDice.sides}]`);
     let [available, text] = batch.showAvailableDices();
     let response = await selectFromBatch(text,batch.getDataForTheASCiiTable());
     let regex = /^[0-9]+$/;
