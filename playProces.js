@@ -3,10 +3,10 @@ import { rl, close, question, questionLoop } from "./question.js";
 
 
 
-export const Process = async function (obj) {
-    await asignResult(obj,0)
+export const Process = async function (obj, batch) {
+    await asignResult(obj,0,batch)
     console.log(`${whoisPlaying(obj,0)== 'playerSelectedDice' ? menu2.passThrow2:menu2.passThrow1}`)
-    await asignResult(obj,1)
+    await asignResult(obj,1,batch)
     const Results=getScoresForBoth(obj)
     findWinner(Results.playerSelectedDice,Results.computerSelectedDice)
 };
@@ -21,13 +21,13 @@ const menu2 ={
     passThrow2:"It's time for the computer to throw"
 }
 //Returns Throw
-const returnsThrow = async function (selectedDice, whoisthrowing) {
+const returnsThrow = async function (selectedDice, whoisthrowing,batch) {
   let Secret = new SecretandHMAC(0, 6);
   console.log(`The computer selected a random value in the range 0..5 (HMAC=${Secret.getHMAC()})`);
   let questionflag = `Add your number modulo 6.\n0 - 0\n1 - 1\n2 - 2\n3 - 3\n4 - 4\n5 - 5\nX - exit\n? - help\n`;
   let flag = false;
   let response = "";
-  response = await questionLoop(flag, questionflag, 2);
+  response = await questionLoop(flag, questionflag, 2,batch.getDataForTheASCiiTable());
   console.log(`Your selection ${response}\nThe number is ${Secret.randomNumber} (KEY=${Secret.getSecret()})`)
   let resultMod = (Number(response) + Number(Secret.randomNumber)) % 6;
   console.log(`The result is ${response} + ${Secret.randomNumber} = ${resultMod} (mod 6)`);
@@ -48,10 +48,10 @@ const findWinner = function (playerDice, computerDice) {
   }
 };
 
-const asignResult= async function(obj,index)
+const asignResult= async function(obj,index,batch)
 {
     for (const prop in obj[index]) {
-        const result = await returnsThrow(obj[index][prop].sides,whoisPlaying(obj,index))
+        const result = await returnsThrow(obj[index][prop].sides,whoisPlaying(obj,index),batch)
         obj[index][prop].result=result
     }
 }

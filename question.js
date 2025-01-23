@@ -25,7 +25,6 @@ export const question = (question) => {
 //get inside questionLoop until you put an acceptable value
 export const questionLoop = async function(flag, questiontext,type,table)
 {
-      console.log('table', table)
       let dynamicTable=generateDynamicTable(table);
       let response= ''
       let response2=''
@@ -43,9 +42,6 @@ export const questionLoop = async function(flag, questiontext,type,table)
             }
         }
         }
-
-
-        //close if user press x or X
         close(response);
         return response
 }
