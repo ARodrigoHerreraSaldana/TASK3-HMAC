@@ -10,19 +10,24 @@ export class intransitiveDice {
 export class intransitiveDiceTable {
   constructor() {
     this.table = [];
+    this.sides =[]
   }
   generateDices(args) {
     if (Array.isArray(args)) {
       for (let i = 0; i < args.length; i++) {
         let dice = new intransitiveDice(i + 1, args[i]);
         this.table.push(dice);
+        this.sides.push(dice.sides)
       }
     } else {
       console.error("it is not an array");
     }
   }
+  getDataForTheASCiiTable()
+  {
+    return this.sides
+  }
   showTable() {
-    console.log(this.table);
     return this.table;
   }
 

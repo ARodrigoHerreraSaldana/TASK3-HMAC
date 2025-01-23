@@ -1,5 +1,5 @@
 import readline from "readline";
-import { firstTable } from "./table.js";
+import { generateDynamicTable } from "./table.js";
 export const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -23,8 +23,10 @@ export const question = (question) => {
   };
 
 //get inside questionLoop until you put an acceptable value
-export const questionLoop = async function(flag, questiontext,type)
+export const questionLoop = async function(flag, questiontext,type,table)
 {
+      console.log('table', table)
+      let dynamicTable=generateDynamicTable(table);
       let response= ''
       let response2=''
       let flag2=false
@@ -33,7 +35,7 @@ export const questionLoop = async function(flag, questiontext,type)
           flag = wrongInput(response,type);
           if(response=='?')
             {
-            console.log(firstTable)  
+            console.log(dynamicTable)  
           while(!flag2)
             {
                 response2 = await question("press x or X to exit\n");
