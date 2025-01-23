@@ -23,11 +23,17 @@ try {
         response = await questionLoop(secondFlag, questionSecondFlag,1, batch.getDataForTheASCiiTable());
         console.log(`Your selection: ${response}\nMy selection: ${whogoesFirst.randomNumber} (KEY=${whogoesFirst.getSecret()})`);
         //take turns
-        if (response == whogoesFirst.randomNumber) {
-            let t = await assignDices(batch, 1);
-        } else {
-            let t = await assignDices(batch, 2);
+        try {
+            let t;
+            if (response == whogoesFirst.randomNumber) {
+                t = await assignDices(batch, 1);
+            } else {
+                t = await assignDices(batch, 2);
+            }
+        } catch (error) {
+            console.error('Error occurred while assigning dices:', error);
         }
+        
     }
 
     rl.close();
@@ -35,3 +41,4 @@ try {
     console.error(e);
     process.exit(1);
 }
+
