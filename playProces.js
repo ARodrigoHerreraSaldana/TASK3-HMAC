@@ -44,7 +44,7 @@ const findWinner = function (playerDice, computerDice) {
   } else if (playerDice === computerDice) {
     console.log(`Draw Match\n${playerDice} = ${computerDice}`);
   } else {
-    console.log(`The computer wins\n${playerDice} < ${computerDice}`);
+    console.log(`I win\n${playerDice} < ${computerDice}`);
   }
 };
 
