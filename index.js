@@ -15,10 +15,10 @@ try {
         let batch = new intransitiveDiceTable();
         batch.generateDices(firstFlag.batch);
         let whogoesFirst = new SecretandHMAC(0, 2);
-        console.log(`Let's determine who makes the first move\nI selected a random value in the range 0..1\n(HMAC ${whogoesFirst.getHMAC()}).\nTry to guess my selection.`);
+        console.log(`Let's determine who makes the first move\nI selected a random value in the range 0..1\n(HMAC ${whogoesFirst.getHMAC()})`);
         //test if the input is good
         let secondFlag = false;
-        let questionSecondFlag = `0 - 0\n1 - 1\nX - exit\n? - help\n`;
+        let questionSecondFlag = `Try to guess my selection\n0 - 0\n1 - 1\nX - exit\n? - help\n`;
         let response = "";
         response = await questionLoop(secondFlag, questionSecondFlag,1, batch.getDataForTheASCiiTable());
         console.log(`Your selection: ${response}\nMy selection: ${whogoesFirst.randomNumber} (KEY=${whogoesFirst.getSecret()})`);

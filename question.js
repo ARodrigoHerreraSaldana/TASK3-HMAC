@@ -39,6 +39,7 @@ export const questionLoop = async function(flag, questiontext,type,table)
             {
                 response2 = await question("press x or X to exit\n");
                 flag2 = wrongInput(response2,3);
+                flag=false
             }
         }
         }
@@ -50,9 +51,9 @@ export const questionLoop = async function(flag, questiontext,type,table)
 export const wrongInput = function (getData, type) {   
     let regex;
     if (type == 1) {
-      regex = /[01xX?]+/g;
+    regex = /^[01xX?]{1}$/;
     } else if (type == 2){
-      regex = /[0-5xX?]+/g;
+      regex = /^[0-5xX?]{1}$/g;
     }
     else
     {
