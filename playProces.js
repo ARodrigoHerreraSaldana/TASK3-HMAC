@@ -23,7 +23,7 @@ const menu2 ={
 //Returns Throw
 const returnsThrow = async function (selectedDice, whoisthrowing,batch) {
   let Secret = new SecretandHMAC(0, 6);
-  console.log(`The computer selected a random value in the range 0..5 (HMAC=${Secret.getHMAC()})`);
+  console.log(`I selected a random value in the range 0..5 (HMAC=${Secret.getHMAC()})`);
   let questionflag = `Add your number modulo 6.\n0 - 0\n1 - 1\n2 - 2\n3 - 3\n4 - 4\n5 - 5\nX - exit\n? - help\n`;
   let flag = false;
   let response = "";
