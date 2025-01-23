@@ -48,6 +48,7 @@ export class intransitiveDiceTable {
 }
 showAvailableDices()
 {
+
     let available=this.table.filter((element)=>element.selectedBy==0).map((element,index)=>{
         return {index,'id':element.id,'sides':element.sides}
     })
@@ -56,7 +57,8 @@ showAvailableDices()
     {
         str+=available[i].index+' - '+available[i].sides+'\n' 
     }
-    return [available, str]
+    let indexes=available.map(element=>element.index.toString())
+    return [available, str , indexes]
 }
 selectPlayerDice(response)
 {

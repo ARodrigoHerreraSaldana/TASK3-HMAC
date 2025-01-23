@@ -1,6 +1,6 @@
 import { intransitiveDiceTable } from "./Dice.js";
 import { Process } from "./playProces.js";
-import { questionLoop } from "./question.js";
+import { questionLoop, questionLoopForDices } from "./question.js";
 
 export const assignDices = async function (batch, type) {
     let orderPlayers = [];
@@ -10,11 +10,10 @@ export const assignDices = async function (batch, type) {
         await ComputerGoesFirst(orderPlayers, batch);
     }
 };
-const selectFromBatch = async function (text,table) {
+const selectFromBatch = async function (obj,table) {
     let Flag = false;
-    let questionFlag = `Choose your dice:\n${text}X - exit\n? - help\n`;
     let response = "";
-    response = await questionLoop(Flag, questionFlag, 2,table);
+    response = await questionLoopForDices(Flag,obj,table);
     return response;
 };
 
@@ -32,8 +31,7 @@ const addPlayerDice = function (batch, response) {
 
 const PlayerGoesFirst = async function (orderPlayers, batch) {
     console.log("You guessed it correctly you go first");
-    let [available, text] = batch.showAvailableDices();
-    let response = await selectFromBatch(text,batch.getDataForTheASCiiTable());
+    let response = await selectFromBatch(batch.showAvailableDices(),batch.getDataForTheASCiiTable());
     let regex = /^[0-9]+$/;
     if (regex.test(response)) {
         let playerSelectedDice = addPlayerDice(batch, response);
@@ -50,8 +48,7 @@ const ComputerGoesFirst = async function (orderPlayers, batch) {
     let computerSelectedDice = batch.SelectRandomlyFromBatch();
     orderPlayers.push({ computerSelectedDice: computerSelectedDice });
     console.log(`I selected [${computerSelectedDice.sides}]`);
-    let [available, text] = batch.showAvailableDices();
-    let response = await selectFromBatch(text,batch.getDataForTheASCiiTable());
+    let response = await selectFromBatch(batch.showAvailableDices(),batch.getDataForTheASCiiTable());
     let regex = /^[0-9]+$/;
     if (regex.test(response)) {
         let playerSelectedDice = addPlayerDice(batch, response);

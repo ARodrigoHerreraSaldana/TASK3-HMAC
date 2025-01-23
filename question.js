@@ -49,22 +49,41 @@ export const questionLoop = async function(flag, questiontext,type,table)
 
 //wrong Input
 export const wrongInput = function (getData, type) {   
-    let regex;
-    if (type == 1) {
-    regex = /^[01xX?]{1}$/;
-    } else if (type == 2){
-      regex = /^[0-5xX?]{1}$/g;
-    }
-    else
-    {
-     regex = /[xX]+/g;  
-    }
-  
-    if (!regex.test(getData)) {
-      console.log("wrong input, those are not your options");
-      return false;
-    } else {
-      return true;
-    }
+  const regexObj = {
+    1: /^[01xX?]{1}$/,
+    2: /^[0-5xX?]{1}$/g,
+    3: /[xX]+/g
+  };
+  const regex = regexObj[type] || regexObj.default;
+  if (!regex.test(getData)) {
+    console.log("wrong input, those are not your options");
+    return false;
   }
-  
+  return true;
+}
+
+  export const questionLoopForDices = async function(flag,obj,table)
+{
+      let closeQuestion=['x','x','?']
+      let goodAnswers=[...obj[2],...closeQuestion]
+      let dynamicTable=generateDynamicTable(table);
+      let response=''
+      while (!flag) {
+        response = await question(`Choose your dice:\n${obj[1]}? - question\nX - close\n`);
+        flag = goodAnswers.includes(response)
+          if(response=='?')
+            {
+            console.log(dynamicTable)  
+          while(!flag2)
+            {
+                response2 = await question("press x or X to exit\n");
+                flag2 = wrongInput(response2,3);
+                flag=false
+            }
+            
+        }
+      
+        }
+        close(response);
+        return response
+}
