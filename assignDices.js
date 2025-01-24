@@ -44,7 +44,7 @@ const PlayerGoesFirst = async function (orderPlayers, batch) {
 };
 
 const ComputerGoesFirst = async function (orderPlayers, batch) {
-    console.log("You didn't guessed it correctly.The computer go first");
+    console.log("You didn't guessed it correctly. I go first");
     let computerSelectedDice = batch.SelectRandomlyFromBatch();
     orderPlayers.push({ computerSelectedDice: computerSelectedDice });
     console.log(`I selected [${computerSelectedDice.sides}]`);

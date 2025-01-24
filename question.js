@@ -29,6 +29,7 @@ export const questionLoop = async function (flag, questiontext, type, table) {
   let response2 = "";
   let flag2 = false;
   while (!flag) {
+    flag2=false
     response = await question(questiontext);
     flag = wrongInput(response, type);
     if (response == "?") {
@@ -60,13 +61,14 @@ export const wrongInput = function (getData, type) {
 };
 
 export const questionLoopForDices = async function (flag, obj, table) {
-  let closeQuestion = ["x", "x", "?"];
+  let closeQuestion = ["x", "X", "?"];
   let goodAnswers = [...obj[2], ...closeQuestion];
   let dynamicTable = generateDynamicTable(table);
   let response = ''
   let flag2=false
   let response2=''
   while (!flag) {
+    flag2=false
     response = await question(
       `Choose your dice:\n${obj[1]}? - question\nX - close\n`
     );

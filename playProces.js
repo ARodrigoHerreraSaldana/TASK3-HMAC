@@ -40,7 +40,7 @@ const returnsThrow = async function (selectedDice, whoisthrowing,batch) {
 //function that tells me who won
 const findWinner = function (playerDice, computerDice) {
   if (playerDice > computerDice) {
-    console.log(`The player wins\n${playerDice} > ${computerDice}`);
+    console.log(`You win\n${playerDice} > ${computerDice}`);
   } else if (playerDice === computerDice) {
     console.log(`Draw Match\n${playerDice} = ${computerDice}`);
   } else {
